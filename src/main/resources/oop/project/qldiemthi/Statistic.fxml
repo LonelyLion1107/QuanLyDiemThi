@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="596.0" prefWidth="834.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.StatisticController">
+    <children>
+        <Label layoutX="289.0" layoutY="24.0" text="Biểu đồ thể hiện mức độ đạt trên 27 điểm trung bình của từng khối" />
+        <Label layoutX="27.0" layoutY="313.0" text="BIểu đồ thể hiện số điểm trung bình từng môn của các sinh viên cùng khối" />
+        <Label layoutX="569.0" layoutY="331.0" text="Biểu đồ thể hiện số khối được sinh viên chọn nhiều nhất" />
+        <LineChart layoutX="107.0" layoutY="359.0" prefHeight="222.0" prefWidth="339.0" style="-fx-background-color: rgb(123,123,243);">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <AreaChart layoutX="556.0" layoutY="359.0" prefHeight="236.0" prefWidth="274.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </AreaChart>
+        <PieChart layoutX="310.0" layoutY="59.0" prefHeight="236.0" prefWidth="303.0" style="-fx-background-color: rgb(51, 204, 255);" />
+    </children>
+</AnchorPane>

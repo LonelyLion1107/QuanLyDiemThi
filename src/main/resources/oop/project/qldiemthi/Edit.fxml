@@ -1,14 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="oop.project.qldiemthi.Edit"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="647.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.EditController">
+    <children>
+        <TableView fx:id="candidateTable" editable="true" layoutY="59.0" prefHeight="375.0" prefWidth="883.0">
+            <columns>
+                <TableColumn fx:id="sbdCol" prefWidth="74.0" text="SBD" />
+                <TableColumn fx:id="nameCol" prefWidth="167.99996948242188" text="Họ và tên" />
+                <TableColumn fx:id="genderCol" prefWidth="66.66667175292969" text="Giới tính" />
+                <TableColumn fx:id="dateOfBirthCol" prefWidth="94.66665649414062" text="Ngày sinh" />
+                <TableColumn fx:id="provinceCol" prefWidth="102.66671752929688" text="Tỉnh" />
+                <TableColumn fx:id="blockExamCol" prefWidth="71.33334350585938" text="Khối thi" />
+                <TableColumn fx:id="scoreCol" prefWidth="234.66668701171875" text="Điểm thi">
+                    <columns>
+                        <TableColumn fx:id="subject1Col" prefWidth="75.0" text="Môn 1" />
+                        <TableColumn fx:id="subject2Col" prefWidth="75.0" text="Môn 2" />
+                        <TableColumn fx:id="subject3Col" prefWidth="75.0" text="Môn 3" />
+                    </columns>
+                </TableColumn>
+                <TableColumn fx:id="totalScoreCol" prefWidth="75.0" text="Tổng điểm" />
+            </columns>
+        </TableView>
+        <Button contentDisplay="TOP" layoutX="209.0" layoutY="598.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: rgb(51, 214, 255); -fx-border-color: rgb(255,255,255);" text="ADD" textOverrun="CLIP">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+                <ColorAdjust brightness="0.07" contrast="-0.09" hue="-0.04" saturation="0.04" />
+            </effect>
+        </Button>
+        <Button layoutX="323.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 0, 102); -fx-border-color: rgb(255,255,255);" text="DELETE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button layoutX="432.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(0, 255, 0); -fx-border-color: rgb(255,255,255);" text="CLEAR">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button layoutX="658.0" layoutY="598.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="52.0" text="GUIDE" />
+        <Button layoutX="537.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 204, 0); -fx-border-color: rgb(255,255,255);" text="UPDATE">
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Pane prefHeight="59.0" prefWidth="883.0" style="-fx-background-color: rgb(51, 204, 255);">
+            <children>
+                <Pane layoutX="246.0" layoutY="9.0" prefHeight="41.0" prefWidth="399.0" style="-fx-background-color: rgb(255,255,255);">
+                    <children>
+                        <TextField layoutX="38.0" layoutY="2.0" prefHeight="35.0" prefWidth="359.0" style="-fx-background-color: rgb(255,255,255);">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </TextField>
+                        <ImageView fitHeight="27.0" fitWidth="37.0" layoutX="14.0" layoutY="7.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Search_1.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
+                <Pane fx:id="homePane" layoutX="14.0" layoutY="9.0" onMouseClicked="#returnHome">
+                    <children>
+                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: rgb(51, 204, 255);" text="HOME" textFill="#f4f2f2">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <ImageView fitHeight="35.0" fitWidth="37.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@Home.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Pane>
+            </children>
+        </Pane>
+        <Label layoutX="42.0" layoutY="459.0" text="Họ và tên" />
+        <TextField layoutX="112.0" layoutY="455.0" />
+        <TextField layoutX="112.0" layoutY="499.0" />
+        <ChoiceBox layoutX="112.0" layoutY="546.0" prefWidth="150.0" />
+        <Label layoutX="42.0" layoutY="503.0" text="SBD" />
+        <Label layoutX="42.0" layoutY="550.0" text="Giới tính" />
+        <Label layoutX="340.0" layoutY="459.0" text="Ngày sinh" />
+        <DatePicker layoutX="402.0" layoutY="455.0" prefHeight="25.0" prefWidth="150.0" />
+        <Label layoutX="340.0" layoutY="503.0" text="Tỉnh" />
+        <ChoiceBox layoutX="402.0" layoutY="499.0" prefWidth="150.0" />
+        <Label layoutX="342.0" layoutY="550.0" text="Khối thi" />
+        <ChoiceBox layoutX="402.0" layoutY="546.0" prefWidth="150.0" />
+        <Label layoutX="645.0" layoutY="459.0" text="Điểm môn 1" />
+        <TextField layoutX="732.0" layoutY="455.0" prefHeight="25.0" prefWidth="73.0" />
+        <Label layoutX="645.0" layoutY="503.0" text="Điểm môn 2" />
+        <TextField layoutX="732.0" layoutY="499.0" prefHeight="25.0" prefWidth="73.0" />
+        <Label layoutX="645.0" layoutY="550.0" text="Điểm môn 3" />
+        <TextField layoutX="732.0" layoutY="546.0" prefHeight="25.0" prefWidth="73.0" />
+    </children>
 </AnchorPane>
