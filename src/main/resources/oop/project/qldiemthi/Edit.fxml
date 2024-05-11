@@ -35,7 +35,7 @@
                 <TableColumn fx:id="totalScoreCol" prefWidth="75.0" text="Tổng điểm" />
             </columns>
         </TableView>
-        <Button contentDisplay="TOP" layoutX="209.0" layoutY="598.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: rgb(51, 214, 255); -fx-border-color: rgb(255,255,255);" text="ADD" textOverrun="CLIP">
+        <Button contentDisplay="TOP" layoutX="187.0" layoutY="596.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: rgb(51, 214, 255); -fx-border-color: rgb(255,255,255);" text="ADD" textOverrun="CLIP">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -43,18 +43,18 @@
                 <ColorAdjust brightness="0.07" contrast="-0.09" hue="-0.04" saturation="0.04" />
             </effect>
         </Button>
-        <Button layoutX="323.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 0, 102); -fx-border-color: rgb(255,255,255);" text="DELETE">
+        <Button layoutX="301.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 0, 102); -fx-border-color: rgb(255,255,255);" text="DELETE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button layoutX="432.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(0, 255, 0); -fx-border-color: rgb(255,255,255);" text="CLEAR">
+        <Button layoutX="410.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(0, 255, 0); -fx-border-color: rgb(255,255,255);" text="CLEAR">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button layoutX="658.0" layoutY="598.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="52.0" text="GUIDE" />
-        <Button layoutX="537.0" layoutY="598.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 204, 0); -fx-border-color: rgb(255,255,255);" text="UPDATE">
+        <Button layoutX="636.0" layoutY="596.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="52.0" text="GUIDE" />
+        <Button layoutX="515.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 204, 0); -fx-border-color: rgb(255,255,255);" text="UPDATE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -75,9 +75,9 @@
                         </ImageView>
                     </children>
                 </Pane>
-                <Pane fx:id="homePane" layoutX="14.0" layoutY="9.0" onMouseClicked="#returnHome">
+                <Pane fx:id="homePane" layoutX="14.0" layoutY="9.0" onMouseClicked="#returnHome" prefHeight="41.0" prefWidth="113.0">
                     <children>
-                        <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: rgb(51, 204, 255);" text="HOME" textFill="#f4f2f2">
+                        <Button contentDisplay="CENTER" layoutX="35.0" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#returnHome" prefHeight="28.0" prefWidth="62.0" style="-fx-background-color: rgb(51, 204, 255);" text="HOME" textFill="#f4f2f2">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>

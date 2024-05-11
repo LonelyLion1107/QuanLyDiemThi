@@ -7,9 +7,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +19,7 @@
 
 <AnchorPane blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="825.0" style="-fx-background-color: rgb(0, 153, 255); -fx-border-color: rgb(255,255,255);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.LoginController">
     <children>
-        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="530.0" layoutY="379.0" mnemonicParsing="false" onAction="#Login" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(0, 153, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
+        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="503.0" layoutY="373.0" mnemonicParsing="false" onAction="#Login" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(26, 163, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -27,44 +27,63 @@
                 <Font name="System Bold" size="18.0" />
             </font>
             <effect>
-                <DropShadow height="44.39" radius="26.375" width="63.11">
+                <DropShadow height="91.18" radius="49.185" width="107.56">
                     <color>
-                        <Color red="0.6280311942100525" green="0.8647862076759338" blue="0.9368420839309692" />
+                        <Color red="0.8656530380249023" green="0.9363716840744019" blue="0.9578947424888611" />
                     </color>
                 </DropShadow>
             </effect>
         </Button>
-        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="526.0" layoutY="300.0" prefHeight="34.0" prefWidth="214.0" />
-        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="530.0" layoutY="207.0" prefHeight="34.0" prefWidth="214.0" />
-        <Pane prefHeight="586.0" prefWidth="419.0" style="-fx-background-color: rgb(255,255,255); -fx-border-color: rgb(0, 153, 255);">
+        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="507.0" layoutY="209.0" prefHeight="34.0" prefWidth="214.0" />
+        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="503.0" layoutY="302.0" prefHeight="34.0" prefWidth="214.0" />
+        <Pane prefHeight="586.0" prefWidth="419.0" style="-fx-background-color: rgb(255,255,255);">
             <children>
-                <ImageView fitHeight="386.0" fitWidth="358.0" layoutX="31.0" layoutY="140.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="391.0" fitWidth="358.0" layoutX="31.0" layoutY="62.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@login-phone.png" />
                     </image>
+               <effect>
+                  <ColorAdjust contrast="-0.19">
+                     <input>
+                        <Reflection bottomOpacity="0.16" fraction="0.91" topOpacity="0.4">
+                           <input>
+                              <DropShadow height="4.62" radius="6.49" spread="0.21" width="23.34">
+                                 <color>
+                                    <Color red="0.0623781681060791" green="0.6861598491668701" blue="0.8421052694320679" />
+                                 </color>
+                              </DropShadow>
+                           </input>
+                        </Reflection>
+                     </input>
+                  </ColorAdjust>
+               </effect>
                 </ImageView>
                 <ButtonBar layoutX="95.0" layoutY="52.0" prefHeight="40.0" prefWidth="200.0" />
             </children>
         </Pane>
-        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="476.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@UserMale.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="476.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Hide.png" />
             </image>
         </ImageView>
-        <Label alignment="CENTER" layoutX="541.0" layoutY="54.0" text="WELCOME" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="518.0" layoutY="59.0" text="WELCOME" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="39.0" />
             </font>
             <effect>
                 <Reflection bottomOpacity="0.58" fraction="1.0" topOpacity="0.37">
-                    <input>
-                        <SepiaTone level="0.76" />
-                    </input>
+               <input>
+                  <DropShadow height="0.0" radius="10.5975" spread="0.21" width="44.39">
+                     <color>
+                        <Color red="0.8818713426589966" green="0.9095711708068848" blue="0.9157894849777222" />
+                     </color>
+                  </DropShadow>
+               </input>
                 </Reflection>
             </effect>
         </Label>
