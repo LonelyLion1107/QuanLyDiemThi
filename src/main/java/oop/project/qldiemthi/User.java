@@ -1,4 +1,4 @@
-package oop.project.qldiemthi.entity;
+package oop.project.qldiemthi;
 
 public class User {
     private String userName;

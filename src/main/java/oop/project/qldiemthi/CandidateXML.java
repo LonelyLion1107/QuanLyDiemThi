@@ -1,4 +1,4 @@
-package oop.project.qldiemthi.entity;
+package oop.project.qldiemthi;
 
 import java.util.List;
 

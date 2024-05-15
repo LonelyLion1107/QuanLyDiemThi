@@ -13,8 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import oop.project.qldiemthi.entity.User;
-import oop.project.qldiemthi.function.UserFunction;
 
 public class LoginController {
     @FXML
@@ -25,18 +23,21 @@ public class LoginController {
     PasswordField passwordField;
 
     private Parent root;
+    private Scene scene;
 
 
     @FXML
     public void Login(ActionEvent e) throws Exception {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        UserFunction userFunction = new UserFunction();
         User user = new User(username, password);
-        if(userFunction.checkUser(user)) {
-            Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        if("admin".equals(user.getUserName()) && "admin".equals(user.getPassword())) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+            root = loader.load();
+
             Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

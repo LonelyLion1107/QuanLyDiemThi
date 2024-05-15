@@ -1,4 +1,4 @@
-package oop.project.qldiemthi.function;
+package oop.project.qldiemthi;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="647.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.EditController">
+<AnchorPane fx:id="clearButton" prefHeight="647.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.EditController">
     <children>
         <TableView fx:id="candidateTable" editable="true" layoutY="59.0" prefHeight="375.0" prefWidth="883.0">
             <columns>
@@ -24,18 +24,18 @@
                 <TableColumn fx:id="genderCol" prefWidth="66.66667175292969" text="Giới tính" />
                 <TableColumn fx:id="dateOfBirthCol" prefWidth="94.66665649414062" text="Ngày sinh" />
                 <TableColumn fx:id="provinceCol" prefWidth="102.66671752929688" text="Tỉnh" />
-                <TableColumn fx:id="blockExamCol" prefWidth="71.33334350585938" text="Khối thi" />
+                <TableColumn fx:id="examBlockCol" prefWidth="71.33334350585938" text="Khối thi" />
                 <TableColumn fx:id="scoreCol" prefWidth="234.66668701171875" text="Điểm thi">
                     <columns>
-                        <TableColumn fx:id="subject1Col" prefWidth="75.0" text="Môn 1" />
-                        <TableColumn fx:id="subject2Col" prefWidth="75.0" text="Môn 2" />
-                        <TableColumn fx:id="subject3Col" prefWidth="75.0" text="Môn 3" />
+                        <TableColumn fx:id="score1Col" prefWidth="75.0" text="Môn 1" />
+                        <TableColumn fx:id="score2Col" prefWidth="75.0" text="Môn 2" />
+                        <TableColumn fx:id="score3Col" prefWidth="75.0" text="Môn 3" />
                     </columns>
                 </TableColumn>
                 <TableColumn fx:id="totalScoreCol" prefWidth="75.0" text="Tổng điểm" />
             </columns>
         </TableView>
-        <Button contentDisplay="TOP" layoutX="187.0" layoutY="596.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: rgb(51, 214, 255); -fx-border-color: rgb(255,255,255);" text="ADD" textOverrun="CLIP">
+        <Button fx:id="addButton" contentDisplay="TOP" layoutX="187.0" layoutY="596.0" mnemonicParsing="false" onMouseClicked="#addData" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: rgb(51, 214, 255); -fx-border-color: rgb(255,255,255);" text="ADD" textOverrun="CLIP">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -43,18 +43,18 @@
                 <ColorAdjust brightness="0.07" contrast="-0.09" hue="-0.04" saturation="0.04" />
             </effect>
         </Button>
-        <Button layoutX="301.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 0, 102); -fx-border-color: rgb(255,255,255);" text="DELETE">
+        <Button fx:id="deleteButton" layoutX="301.0" layoutY="596.0" mnemonicParsing="false" onMouseClicked="#deleteData" style="-fx-background-color: rgb(255, 0, 102); -fx-border-color: rgb(255,255,255);" text="DELETE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
-        <Button layoutX="410.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(0, 255, 0); -fx-border-color: rgb(255,255,255);" text="CLEAR">
+        <Button layoutX="410.0" layoutY="596.0" mnemonicParsing="false" onMouseClicked="#clear" style="-fx-background-color: rgb(0, 255, 0); -fx-border-color: rgb(255,255,255);" text="CLEAR">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </Button>
         <Button layoutX="636.0" layoutY="596.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="52.0" text="GUIDE" />
-        <Button layoutX="515.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 204, 0); -fx-border-color: rgb(255,255,255);" text="UPDATE">
+        <Button fx:id="updateButton" layoutX="515.0" layoutY="596.0" mnemonicParsing="false" style="-fx-background-color: rgb(255, 204, 0); -fx-border-color: rgb(255,255,255);" text="UPDATE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -98,22 +98,22 @@
             </children>
         </Pane>
         <Label layoutX="42.0" layoutY="459.0" text="Họ và tên" />
-        <TextField layoutX="112.0" layoutY="455.0" />
-        <TextField layoutX="112.0" layoutY="499.0" />
-        <ChoiceBox layoutX="112.0" layoutY="546.0" prefWidth="150.0" />
+        <TextField fx:id="nameField" layoutX="112.0" layoutY="455.0" />
+        <TextField fx:id="sbdField" layoutX="112.0" layoutY="499.0" />
+        <ChoiceBox fx:id="genderChoice" layoutX="112.0" layoutY="546.0" prefWidth="150.0" />
         <Label layoutX="42.0" layoutY="503.0" text="SBD" />
         <Label layoutX="42.0" layoutY="550.0" text="Giới tính" />
         <Label layoutX="340.0" layoutY="459.0" text="Ngày sinh" />
-        <DatePicker layoutX="402.0" layoutY="455.0" prefHeight="25.0" prefWidth="150.0" />
+        <DatePicker fx:id="datePicker" layoutX="402.0" layoutY="455.0" prefHeight="25.0" prefWidth="149.0" />
         <Label layoutX="340.0" layoutY="503.0" text="Tỉnh" />
-        <ChoiceBox layoutX="402.0" layoutY="499.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="provinceChoice" layoutX="402.0" layoutY="499.0" prefWidth="150.0" />
         <Label layoutX="342.0" layoutY="550.0" text="Khối thi" />
-        <ChoiceBox layoutX="402.0" layoutY="546.0" prefWidth="150.0" />
+        <ChoiceBox fx:id="examBlockChoice" layoutX="402.0" layoutY="546.0" prefWidth="150.0" />
         <Label layoutX="645.0" layoutY="459.0" text="Điểm môn 1" />
-        <TextField layoutX="732.0" layoutY="455.0" prefHeight="25.0" prefWidth="73.0" />
+        <TextField fx:id="score1Field" layoutX="732.0" layoutY="455.0" prefHeight="25.0" prefWidth="73.0" />
         <Label layoutX="645.0" layoutY="503.0" text="Điểm môn 2" />
-        <TextField layoutX="732.0" layoutY="499.0" prefHeight="25.0" prefWidth="73.0" />
+        <TextField fx:id="score2Field" layoutX="732.0" layoutY="499.0" prefHeight="25.0" prefWidth="73.0" />
         <Label layoutX="645.0" layoutY="550.0" text="Điểm môn 3" />
-        <TextField layoutX="732.0" layoutY="546.0" prefHeight="25.0" prefWidth="73.0" />
+        <TextField fx:id="score3Field" layoutX="732.0" layoutY="546.0" prefHeight="25.0" prefWidth="73.0" />
     </children>
 </AnchorPane>

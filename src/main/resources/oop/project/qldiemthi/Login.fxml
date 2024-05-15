@@ -19,7 +19,7 @@
 
 <AnchorPane blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="586.0" prefWidth="825.0" style="-fx-background-color: rgb(0, 153, 255); -fx-border-color: rgb(255,255,255);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.LoginController">
     <children>
-        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="503.0" layoutY="373.0" mnemonicParsing="false" onAction="#Login" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(26, 163, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
+        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="503.0" layoutY="403.0" mnemonicParsing="false" onAction="#Login" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(26, 163, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -34,8 +34,14 @@
                 </DropShadow>
             </effect>
         </Button>
-        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="507.0" layoutY="209.0" prefHeight="34.0" prefWidth="214.0" />
-        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="503.0" layoutY="302.0" prefHeight="34.0" prefWidth="214.0" />
+        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="503.0" layoutY="210.0" prefHeight="39.0" prefWidth="214.0" promptText="Username">
+         <font>
+            <Font size="18.0" />
+         </font></TextField>
+        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="503.0" layoutY="293.0" prefHeight="34.0" prefWidth="214.0" promptText="Password">
+         <font>
+            <Font size="18.0" />
+         </font></PasswordField>
         <Pane prefHeight="586.0" prefWidth="419.0" style="-fx-background-color: rgb(255,255,255);">
             <children>
                 <ImageView fitHeight="391.0" fitWidth="358.0" layoutX="31.0" layoutY="62.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
@@ -66,7 +72,7 @@
                 <Image url="@UserMale.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Hide.png" />
             </image>
