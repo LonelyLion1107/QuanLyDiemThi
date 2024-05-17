@@ -2,7 +2,6 @@ package oop.project.qldiemthi;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,28 +9,31 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.converter.FloatStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 
 public class EditController implements Initializable {
+
+    //Home Pane
     @FXML
     private Pane homePane;
 
+    //Candidate Table
     @FXML
     private TableView<Candidate> candidateTable;
 
+    //Candidate Table Items
     @FXML
     private TableColumn<Candidate, String> examBlockCol;
 
@@ -69,19 +71,25 @@ public class EditController implements Initializable {
     private TextField sbdField;
 
     @FXML
-    private ChoiceBox<String> genderChoice;
-    private String[] gd = {"Nam", "Nữ"};
+    private ComboBox<String> genderChoice;
+    private final String[] genderList = {"Nam", "Nữ"};
 
     @FXML
     private DatePicker datePicker;
 
     @FXML
-    private ChoiceBox<String> provinceChoice;
-    private String[] provinceList = {"Bình Định", "Quảng Ngãi", "Hồ Chí Minh"};
+    private ComboBox<String> provinceChoice;
+    private final String[] provinceList = {"An Giang", "Bà Rịa - Vũng Tàu", "Bạc Liêu", "Bắc Kạn", "Bắc Giang", "Bắc Ninh", "Bến Tre", "Bình Dương", "Bình Định", "Bình Phước", "Bình Thuận", "Cà Mau", "Cao Bằng", "TP. Cần Thơ", "TP. Đà Nẵng", "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "TP. Hà Nội", "Hà Tĩnh", "Hải Dương", "TP. Hải Phòng", "Hòa Bình", "TP. Hồ Chí Minh", "Hậu Giang", "Hưng Yên", "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lào Cai", "Lạng Sơn", "Lâm Đồng", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "Trà Vinh", "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"};
 
     @FXML
-    private ChoiceBox<String> examBlockChoice;
-    private String[] blockList = {"A00", "A01", "B00", "C00", "D00"};
+    private ComboBox<String> examBlockChoice;
+    private final String[] examBlockList = {
+            "A00 (Toán, Lý, Hóa)",
+            "A01 (Toán, Lý, Anh)",
+            "B00 (Toán, Hóa, Sinh)",
+            "C00 (Văn, Sử, Địa)",
+            "D01 (Toán, Văn, Anh)"
+    };
 
     @FXML
     private TextField score1Field;
@@ -92,24 +100,22 @@ public class EditController implements Initializable {
     @FXML
     private TextField score3Field;
 
-    @FXML
-    private Button addButton;
+    //Date Format
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private CandidateXML candidateXML = new CandidateXML();
 
-    ObservableList<Candidate> initialData() {
-        Candidate candidate = new Candidate();
-        return FXCollections.observableArrayList(candidate);
-    }
+    private ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        genderChoice.getItems().addAll(gd);
-        examBlockChoice.getItems().addAll(blockList);
+        genderChoice.getItems().addAll(genderList);
+        examBlockChoice.getItems().addAll(examBlockList);
         provinceChoice.getItems().addAll(provinceList);
 
-        sbdCol.setCellValueFactory(new PropertyValueFactory<Candidate, Integer>("sbd"));
         nameCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("name"));
+        sbdCol.setCellValueFactory(new PropertyValueFactory<Candidate, Integer>("sbd"));
         genderCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("gender"));
         dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("dateOfBirth"));
         provinceCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("province"));
@@ -119,10 +125,7 @@ public class EditController implements Initializable {
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
 
-        candidateTable.setItems(initialData());
-        candidateTable.setEditable(true);
-
-
+        candidateTable.setItems(candidateData);
     }
 
     public void addData(MouseEvent e) {
@@ -136,25 +139,48 @@ public class EditController implements Initializable {
         float score2 = Float.parseFloat(score2Field.getText());
         float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate newData = new Candidate(name, dateOfBirth, sbd, gender, province);
-        newData.setExamBlock(examBlock);
-        newData.setScore1(score1);
-        newData.setScore2(score2);
-        newData.setScore3(score3);
-        newData.setTotalScore();
-        candidateTable.getItems().add(newData);
+        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
-        nameField.clear();
-        sbdField.clear();
-        genderChoice.setValue("");
-        datePicker.setValue(null);
-        provinceChoice.setValue("");
-        examBlockChoice.setValue("");
-        score1Field.clear();
-        score2Field.clear();
-        score3Field.clear();
+        candidateData.add(candidate);
+
+        clearInput();
     }
 
+    public void getInfo(MouseEvent e) {
+        Candidate data = candidateTable.getSelectionModel().getSelectedItem();
+
+        if(data != null) {
+            nameField.setText(data.getName());
+            sbdField.setText(String.valueOf(data.getSbd()));
+            genderChoice.setValue(data.getGender());
+            datePicker.setValue(LocalDate.parse(data.getDateOfBirth(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            provinceChoice.setValue(data.getProvince());
+            examBlockChoice.setValue(data.getExamBlock());
+            score1Field.setText(String.valueOf(data.getScore1()));
+            score2Field.setText(String.valueOf(data.getScore2()));
+            score3Field.setText(String.valueOf(data.getScore3()));
+        }
+    }
+
+    public void updateData(MouseEvent e) {
+        int row = candidateTable.getSelectionModel().getSelectedIndex();
+
+        String name = nameField.getText();
+        int sbd = Integer.parseInt(sbdField.getText());
+        String gender = genderChoice.getValue();
+        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+        String province = provinceChoice.getValue();
+        String examBlock = examBlockChoice.getValue();
+        float score1 = Float.parseFloat(score1Field.getText());
+        float score2 = Float.parseFloat(score2Field.getText());
+        float score3 = Float.parseFloat(score3Field.getText());
+
+        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+
+        candidateData.set(row, candidate);
+
+        clearInput();
+    }
 
     public void deleteData(MouseEvent e) {
         TableView.TableViewSelectionModel<Candidate> selectionModel = candidateTable.getSelectionModel();
@@ -170,8 +196,22 @@ public class EditController implements Initializable {
         }
     }
 
-    public void clear(MouseEvent e) {
+    public void clearTableView(MouseEvent e) {
+        List<Candidate> candidateList = candidateData.stream().collect(Collectors.toList());
+        candidateXML.createXML(candidateList);
         candidateTable.getItems().clear();
+    }
+
+    public void clearInput() {
+        nameField.clear();
+        sbdField.clear();
+        genderChoice.setValue("");
+        datePicker.setValue(null);
+        provinceChoice.setValue("");
+        examBlockChoice.setValue("");
+        score1Field.clear();
+        score2Field.clear();
+        score3Field.clear();
     }
 
     public void returnHome(MouseEvent e) {

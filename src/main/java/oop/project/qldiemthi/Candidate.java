@@ -1,14 +1,7 @@
 package oop.project.qldiemthi;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "Candidate")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Candidate implements Serializable {
     private String name;
     private String dateOfBirth;
@@ -21,20 +14,21 @@ public class Candidate implements Serializable {
     private float score3;
     private float totalScore;
 
-    public Candidate(String name, String dateOfBirth, int sbd, String gender, String province) {
+    public Candidate(String name, String dateOfBirth, int sbd, String gender, String province, String examBlock, float score1, float score2, float score3) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.sbd = sbd;
         this.gender = gender;
         this.province = province;
+        this.examBlock = examBlock;
+        this.score1 = score1;
+        this.score2 = score2;
+        this.score3 = score3;
+        this.totalScore = score1 + score2 + score3;
     }
 
     public Candidate() {
-        this.name = "";
-        this.sbd = 0;
-        this.dateOfBirth = "";
-        this.gender = "";
-        this.province = "";
+
     }
 
     public String getName() {
