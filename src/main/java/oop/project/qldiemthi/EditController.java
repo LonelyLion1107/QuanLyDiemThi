@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,6 +29,9 @@ public class EditController implements Initializable {
     //Home Pane
     @FXML
     private Pane homePane;
+
+    @FXML
+    private TextField searchInput;
 
     //Candidate Table
     @FXML
@@ -105,7 +109,10 @@ public class EditController implements Initializable {
 
     private CandidateXML candidateXML = new CandidateXML();
 
+    private List<Candidate> candidateList = new ArrayList<Candidate>();
+
     private ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
+
 
 
     @Override
@@ -125,6 +132,10 @@ public class EditController implements Initializable {
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
 
+        if(candidateList != null) {
+            candidateData.addAll(candidateList);
+        }
+
         candidateTable.setItems(candidateData);
     }
 
@@ -142,6 +153,7 @@ public class EditController implements Initializable {
         Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
         candidateData.add(candidate);
+        candidateList.add(candidate);
 
         clearInput();
     }
@@ -178,28 +190,23 @@ public class EditController implements Initializable {
         Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
         candidateData.set(row, candidate);
+        candidateList.set(row, candidate);
 
         clearInput();
     }
 
     public void deleteData(MouseEvent e) {
-        TableView.TableViewSelectionModel<Candidate> selectionModel = candidateTable.getSelectionModel();
+        int row = candidateTable.getSelectionModel().getSelectedIndex();
 
-        ObservableList<Integer> list = selectionModel.getSelectedIndices();
-        Integer[] seletedIndices = new Integer[list.size()];
-        seletedIndices = list.toArray(seletedIndices);
-
-        Arrays.sort(seletedIndices);
-        for (int i = seletedIndices.length - 1; i >= 0; i--) {
-            selectionModel.clearSelection(seletedIndices[i].intValue());
-            candidateTable.getItems().remove(seletedIndices[i].intValue());
+        if(row >= 0) {
+            candidateData.remove(row);
+            candidateList.remove(row);
         }
     }
 
     public void clearTableView(MouseEvent e) {
-        List<Candidate> candidateList = candidateData.stream().collect(Collectors.toList());
-        candidateXML.createXML(candidateList);
         candidateTable.getItems().clear();
+        candidateData.clear();
     }
 
     public void clearInput() {
@@ -212,6 +219,22 @@ public class EditController implements Initializable {
         score1Field.clear();
         score2Field.clear();
         score3Field.clear();
+    }
+
+    public void search() {
+        String searchContent = searchInput.getText();
+        
+    }
+
+    public void guide(MouseEvent e){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Guide.fxml"));
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void returnHome(MouseEvent e) {
