@@ -109,9 +109,9 @@ public class EditController implements Initializable {
 
     private CandidateXML candidateXML = new CandidateXML();
 
-    private List<Candidate> candidateList = new ArrayList<Candidate>();
+     List<Candidate> candidateList = new ArrayList<Candidate>();
 
-    private ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
+     ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
 
 
 
