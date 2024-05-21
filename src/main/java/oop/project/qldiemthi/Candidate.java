@@ -1,7 +1,12 @@
 package oop.project.qldiemthi;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
+@XmlRootElement(name = "candidate")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Candidate implements Serializable {
     private String name;
     private String dateOfBirth;
