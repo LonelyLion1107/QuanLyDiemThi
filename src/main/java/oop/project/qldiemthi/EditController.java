@@ -109,6 +109,8 @@ public class EditController implements Initializable {
 
     private CandidateXML candidateXML = new CandidateXML();
 
+    private List<Candidate> candidateList = new ArrayList<Candidate>();
+
     private ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
 
 
@@ -129,6 +131,10 @@ public class EditController implements Initializable {
         score2Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score2"));
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
+
+        if(candidateList != null) {
+            candidateData.addAll(candidateList);
+        }
 
         candidateTable.setItems(candidateData);
     }
@@ -181,11 +187,10 @@ public class EditController implements Initializable {
         float score2 = Float.parseFloat(score2Field.getText());
         float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate newData = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
-        Candidate oldData = candidateData.get(row);
-        candidateData.set(row, newData);
-        candidateList.set(row, newData);
+        candidateData.set(row, candidate);
+        candidateList.set(row, candidate);
 
         clearInput();
     }
@@ -202,9 +207,7 @@ public class EditController implements Initializable {
     public void clearTableView(MouseEvent e) {
         candidateTable.getItems().clear();
         candidateData.clear();
-        clearInput();
     }
-
 
     public void clearInput() {
         nameField.clear();

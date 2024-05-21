@@ -10,7 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -31,6 +33,8 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         User user = new User(username, password);
+
+
         if("admin".equals(user.getUserName()) && "admin".equals(user.getPassword())) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
             root = loader.load();
@@ -50,14 +54,15 @@ public class LoginController {
     }
 
     @FXML
-    public void LoginEntered(ActionEvent e) throws Exception {
-        LoginButton.setBackground(Background.fill(Color.rgb(255,255,255)));
+    public void LoginEntered(MouseEvent e) throws Exception {
+        LoginButton.setBackground(Background.fill(Color.WHITE));
         LoginButton.setTextFill(Color. rgb(0, 153, 255));
+        LoginButton.setBorder(Border.stroke(Color.AQUAMARINE));
 
     }
 
     @FXML
-    public void LoginExited(ActionEvent e) throws Exception {
+    public void LoginExited(MouseEvent e) throws Exception {
         LoginButton.setBackground(Background.fill(Color. rgb(0, 153, 255)));
         LoginButton.setTextFill(Color.WHITE);
     }
