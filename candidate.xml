@@ -108,4 +108,28 @@
         <score3>4.0</score3>
         <totalScore>20.0</totalScore>
     </listCandidates>
+    <listCandidates>
+        <name>Nguyen Van B</name>
+        <dateOfBirth>22/05/2024</dateOfBirth>
+        <sbd>7</sbd>
+        <gender>Nam</gender>
+        <province>Bến Tre</province>
+        <examBlock>B00</examBlock>
+        <score1>8.0</score1>
+        <score2>7.0</score2>
+        <score3>6.0</score3>
+        <totalScore>21.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>Nguyen Van C</name>
+        <dateOfBirth>16/05/2024</dateOfBirth>
+        <sbd>7</sbd>
+        <gender>Nam</gender>
+        <province>Bắc Giang</province>
+        <examBlock>B00</examBlock>
+        <score1>7.0</score1>
+        <score2>6.0</score2>
+        <score3>7.0</score3>
+        <totalScore>20.0</totalScore>
+    </listCandidates>
 </candidates>

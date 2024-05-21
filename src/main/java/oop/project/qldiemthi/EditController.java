@@ -33,6 +33,10 @@ public class EditController implements Initializable {
     @FXML
     private TextField searchInput;
 
+    @FXML
+    private ComboBox<String> searchChoice;
+    private String[] searchList = {"Theo tên", "Theo SBD"};
+
     //Candidate Table
     @FXML
     private TableView<Candidate> candidateTable;
@@ -116,6 +120,7 @@ public class EditController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        searchChoice.getItems().addAll(searchList);
         genderChoice.getItems().addAll(genderList);
         examBlockChoice.getItems().addAll(examBlockList);
         provinceChoice.getItems().addAll(provinceList);
@@ -130,6 +135,8 @@ public class EditController implements Initializable {
         score2Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score2"));
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
+
+        candidateTable.getSortOrder().addAll(nameCol, sbdCol, totalScoreCol);
 
         candidateTable.setItems(candidateData);
     }
@@ -156,7 +163,7 @@ public class EditController implements Initializable {
     public void getInfo(MouseEvent e) {
         Candidate data = candidateTable.getSelectionModel().getSelectedItem();
 
-        if(data != null) {
+        if (data != null) {
             nameField.setText(data.getName());
             sbdField.setText(String.valueOf(data.getSbd()));
             genderChoice.setValue(data.getGender());
@@ -193,7 +200,7 @@ public class EditController implements Initializable {
     public void deleteData(MouseEvent e) {
         int row = candidateTable.getSelectionModel().getSelectedIndex();
 
-        if(row >= 0) {
+        if (row >= 0) {
             candidateData.remove(row);
             candidateFunction.deleteCandidate(row);
         }
@@ -218,12 +225,37 @@ public class EditController implements Initializable {
         score3Field.clear();
     }
 
-    public void search() {
+    public void search(MouseEvent e) {
         String searchContent = searchInput.getText();
-        
+        String searchType = searchChoice.getValue();
+        List<Candidate> searchList = new ArrayList<Candidate>();
+
+        if (searchType.equals("Theo tên")) {
+            for (Candidate item : candidateList) {
+                String name = item.getName();
+                if (name.contains(searchContent)) {
+                    searchList.add(item);
+                }
+            }
+        } else if (searchType.equals("Theo SBD")) {
+            for (Candidate item : candidateList) {
+                if (item.getSbd() == Integer.parseInt(searchContent)) {
+                    searchList.add(item);
+                }
+            }
+        }
+
+        candidateData.clear();
+        candidateData.addAll(searchList);
     }
 
-    public void guide(MouseEvent e){
+    public void searchExit(MouseEvent e) {
+        candidateData.clear();
+        candidateData.addAll(candidateList);
+        candidateTable.refresh();
+    }
+
+    public void guide(MouseEvent e) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Guide.fxml"));
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
