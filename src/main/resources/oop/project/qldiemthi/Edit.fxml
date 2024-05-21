@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="clearButton" prefHeight="647.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.EditController">
+<AnchorPane fx:id="clearButton" prefHeight="700.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.EditController">
     <children>
         <TableView fx:id="candidateTable" editable="true" layoutY="59.0" onMouseClicked="#getInfo" prefHeight="375.0" prefWidth="883.0">
             <columns>
