@@ -107,12 +107,11 @@ public class EditController implements Initializable {
     //Date Format
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private CandidateXML candidateXML = new CandidateXML();
+    private CandidateFunction candidateFunction = new CandidateFunction();
 
-    private List<Candidate> candidateList = new ArrayList<Candidate>();
+    private List<Candidate> candidateList = candidateFunction.getCandidateList();
 
-    private ObservableList<Candidate> candidateData = FXCollections.observableArrayList();
-
+    private ObservableList<Candidate> candidateData = FXCollections.observableArrayList(candidateList);
 
 
     @Override
@@ -132,10 +131,6 @@ public class EditController implements Initializable {
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
 
-        if(candidateList != null) {
-            candidateData.addAll(candidateList);
-        }
-
         candidateTable.setItems(candidateData);
     }
 
@@ -145,7 +140,7 @@ public class EditController implements Initializable {
         String gender = genderChoice.getValue();
         String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
         String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue();
+        String examBlock = examBlockChoice.getValue().substring(0, 3);
         float score1 = Float.parseFloat(score1Field.getText());
         float score2 = Float.parseFloat(score2Field.getText());
         float score3 = Float.parseFloat(score3Field.getText());
@@ -153,7 +148,7 @@ public class EditController implements Initializable {
         Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
         candidateData.add(candidate);
-        candidateList.add(candidate);
+        candidateFunction.addCandidate(candidate);
 
         clearInput();
     }
@@ -182,7 +177,7 @@ public class EditController implements Initializable {
         String gender = genderChoice.getValue();
         String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
         String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue();
+        String examBlock = examBlockChoice.getValue().substring(0, 3);
         float score1 = Float.parseFloat(score1Field.getText());
         float score2 = Float.parseFloat(score2Field.getText());
         float score3 = Float.parseFloat(score3Field.getText());
@@ -190,7 +185,7 @@ public class EditController implements Initializable {
         Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
         candidateData.set(row, candidate);
-        candidateList.set(row, candidate);
+        candidateFunction.editCandidate(candidate, row);
 
         clearInput();
     }
@@ -200,13 +195,15 @@ public class EditController implements Initializable {
 
         if(row >= 0) {
             candidateData.remove(row);
-            candidateList.remove(row);
+            candidateFunction.deleteCandidate(row);
         }
+        clearInput();
     }
 
     public void clearTableView(MouseEvent e) {
         candidateTable.getItems().clear();
         candidateData.clear();
+        candidateFunction.clearAll();
     }
 
     public void clearInput() {

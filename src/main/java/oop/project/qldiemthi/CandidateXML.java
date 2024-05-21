@@ -8,13 +8,13 @@ import java.util.List;
 @XmlRootElement(name = "candidates")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CandidateXML {
-    private List<Candidate> candidateList;
+    private List<Candidate> listCandidates;
 
     public List<Candidate> getCandidateList() {
-        return candidateList;
+        return listCandidates;
     }
 
-    public void setCandidateList(List<Candidate> candidateList) {
-        this.candidateList = candidateList;
+    public void setCandidateList(List<Candidate> listCandidates) {
+        this.listCandidates = listCandidates;
     }
 }

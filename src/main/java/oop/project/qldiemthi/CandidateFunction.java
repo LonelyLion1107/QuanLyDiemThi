@@ -12,6 +12,11 @@ public class CandidateFunction {
     private List<Candidate> candidateList;
 
     public CandidateFunction() {
+        File xmlFile = new File(candidate_file);
+        if(xmlFile.length() == 0) {
+            List<Candidate> list = new ArrayList<Candidate>();
+            writeCandidateList(list);
+        }
         this.candidateList = readCandidateList();
         if(candidateList == null) {
             candidateList = new ArrayList<Candidate>();
@@ -77,8 +82,21 @@ public class CandidateFunction {
         writeCandidateList(candidateList);
     }
 
-    public void deleteCandidate(Candidate candidate, int index) {
+    public void deleteCandidate(int index) {
         candidateList.remove(index);
         writeCandidateList(candidateList);
+    }
+
+    public void clearAll() {
+        candidateList.clear();
+        writeCandidateList(candidateList);
+    }
+
+    public List<Candidate> getCandidateList() {
+        return candidateList;
+    }
+
+    public void setCandidateList(List<Candidate> candidateList) {
+        this.candidateList = candidateList;
     }
 }

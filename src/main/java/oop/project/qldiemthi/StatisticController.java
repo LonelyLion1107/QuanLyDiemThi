@@ -22,7 +22,7 @@ public class StatisticController implements Initializable {
     @FXML
     LineChart<String, Number> lineChart;
 
-    EditController editController;
+    private CandidateFunction candidateFunction = new CandidateFunction();
 
 
     public void returnHome(MouseEvent e) {
@@ -38,7 +38,6 @@ public class StatisticController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        editController = new EditController();
         // PieChart
         int countA00=0;
         int countA01=0;
@@ -46,7 +45,7 @@ public class StatisticController implements Initializable {
         int countC00=0;
         int countD01=0;
 
-        for(Candidate e: editController.candidateData)
+        for(Candidate e: candidateFunction.getCandidateList())
         {
             if(e.getExamBlock()=="A00")
                 countA00++;
@@ -87,7 +86,7 @@ public class StatisticController implements Initializable {
         double maxC00=0;
         double maxD01=0;
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        for(Candidate e: editController.candidateData)
+        for(Candidate e: candidateFunction.getCandidateList())
         {
             if(e.getExamBlock()=="A00" && maxA00<e.getTotalScore())
                 maxA00=e.getTotalScore();

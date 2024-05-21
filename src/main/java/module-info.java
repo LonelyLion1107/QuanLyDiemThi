@@ -4,6 +4,6 @@ module oop.project.qldiemthi {
     requires java.xml.bind;
 
 
-    opens oop.project.qldiemthi to javafx.fxml;
+    opens oop.project.qldiemthi to javafx.fxml, java.xml.bind;
     exports oop.project.qldiemthi;
 }

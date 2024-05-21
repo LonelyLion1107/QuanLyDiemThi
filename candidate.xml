@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<candidates>
+    <listCandidates>
+        <name>Nguyen Van A</name>
+        <dateOfBirth>09/05/2024</dateOfBirth>
+        <sbd>8</sbd>
+        <gender>Nữ</gender>
+        <province>Bắc Ninh</province>
+        <examBlock>B00</examBlock>
+        <score1>8.0</score1>
+        <score2>8.0</score2>
+        <score3>7.0</score3>
+        <totalScore>23.0</totalScore>
+    </listCandidates>
+</candidates>
