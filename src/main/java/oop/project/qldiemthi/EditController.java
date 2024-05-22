@@ -17,10 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class EditController implements Initializable {
@@ -124,8 +121,8 @@ public class EditController implements Initializable {
         examBlockChoice.getItems().addAll(examBlockList);
         provinceChoice.getItems().addAll(provinceList);
 
-        nameCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("name"));
         sbdCol.setCellValueFactory(new PropertyValueFactory<Candidate, Integer>("sbd"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("name"));
         genderCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("gender"));
         dateOfBirthCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("dateOfBirth"));
         provinceCol.setCellValueFactory(new PropertyValueFactory<Candidate, String>("province"));
@@ -135,7 +132,8 @@ public class EditController implements Initializable {
         score3Col.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("score3"));
         totalScoreCol.setCellValueFactory(new PropertyValueFactory<Candidate, Float>("totalScore"));
 
-        candidateTable.getSortOrder().addAll(nameCol, sbdCol, totalScoreCol);
+        candidateTable.getSortOrder().add(sbdCol);
+        sbdCol.setSortType(TableColumn.SortType.ASCENDING);
 
         candidateTable.setItems(candidateData);
     }
@@ -155,8 +153,9 @@ public class EditController implements Initializable {
             Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
             if (checkInput()) {
-                candidateData.add(candidate);
                 candidateFunction.addCandidate(candidate);
+                candidateData.add(candidate);
+                candidateTable.refresh();
                 clearInput();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -206,9 +205,10 @@ public class EditController implements Initializable {
             float score3 = Float.parseFloat(score3Field.getText());
 
             Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
-            if(checkInput()) {
+            if (checkInput()) {
                 candidateData.set(row, candidate);
                 candidateFunction.editCandidate(candidate, row);
+                candidateTable.refresh();
                 clearInput();
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -217,7 +217,7 @@ public class EditController implements Initializable {
                 alert.setContentText("Please read the guide and check information fields carefully");
                 alert.showAndWait();
             }
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             exception.getMessage();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Information");
@@ -225,9 +225,6 @@ public class EditController implements Initializable {
             alert.setContentText("Please read the guide and check information fields carefully");
             alert.showAndWait();
         }
-
-
-
     }
 
     public void deleteData(MouseEvent e) {
@@ -263,26 +260,62 @@ public class EditController implements Initializable {
         String searchType = searchChoice.getValue();
         List<Candidate> searchList = new ArrayList<Candidate>();
 
-        if (searchType.equals("Theo tên")) {
-            for (Candidate item : candidateList) {
-                String name = item.getName();
-                if (name.contains(searchContent)) {
-                    searchList.add(item);
+        if (searchType == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Search Error");
+            alert.setHeaderText("Search choice is null");
+            alert.setContentText("Please choose type of searching");
+            alert.showAndWait();
+            return;
+        } else if (searchType.equals("Theo tên")) {
+            if (searchContent.matches(".*[a-zA-Z].*")) {
+                for (Candidate item : candidateList) {
+                    String name = item.getName();
+                    if (name.contains(searchContent)) {
+                        searchList.add(item);
+                    }
                 }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Search Error");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please only input character");
+                alert.showAndWait();
+                return;
             }
         } else if (searchType.equals("Theo SBD")) {
-            for (Candidate item : candidateList) {
-                if (item.getSbd() == Integer.parseInt(searchContent)) {
-                    searchList.add(item);
+            try {
+                int sbd = Integer.parseInt(searchContent);
+                for (Candidate item : candidateList) {
+                    if (item.getSbd() == sbd) {
+                        searchList.add(item);
+                    }
                 }
+            } catch (Exception exception) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Search Error");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please only input number");
+                alert.showAndWait();
+                return;
             }
         }
 
-        candidateData.clear();
-        candidateData.addAll(searchList);
+        if(searchList.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search result");
+            alert.setHeaderText("No candidate is found");
+            alert.setContentText("We can't find any candidate satisfy with your request");
+            alert.showAndWait();
+        } else {
+            candidateData.clear();
+            candidateData.addAll(searchList);
+        }
     }
 
     public void searchExit(MouseEvent e) {
+        searchChoice.setValue("Theo tên");
+        searchInput.setText(null);
         candidateData.clear();
         candidateData.addAll(candidateList);
         candidateTable.refresh();
