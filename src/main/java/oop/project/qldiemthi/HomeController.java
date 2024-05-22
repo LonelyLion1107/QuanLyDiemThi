@@ -37,6 +37,7 @@ public class HomeController {
             stage = new Stage();
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -49,6 +50,7 @@ public class HomeController {
             stage = new Stage();
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -61,6 +63,7 @@ public class HomeController {
             stage = new Stage();
             stage = (Stage)((Node)e.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setResizable(false);
             stage.show();
         } catch (Exception ex) {
             ex.printStackTrace();

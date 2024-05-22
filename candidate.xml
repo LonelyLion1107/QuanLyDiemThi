@@ -5,12 +5,108 @@
         <dateOfBirth>09/05/2024</dateOfBirth>
         <sbd>8</sbd>
         <gender>Nữ</gender>
-        <province>Bắc Ninh</province>
+        <province>Bình Phước</province>
         <examBlock>B00</examBlock>
         <score1>8.0</score1>
         <score2>8.0</score2>
         <score3>7.0</score3>
         <totalScore>23.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>k</name>
+        <dateOfBirth>08/05/2024</dateOfBirth>
+        <sbd>1</sbd>
+        <gender>Nữ</gender>
+        <province>Bình Phước</province>
+        <examBlock>A00</examBlock>
+        <score1>2.0</score1>
+        <score2>2.0</score2>
+        <score3>3.0</score3>
+        <totalScore>7.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>a</name>
+        <dateOfBirth>08/05/2024</dateOfBirth>
+        <sbd>1</sbd>
+        <gender>Nam</gender>
+        <province>Bình Phước</province>
+        <examBlock>A01</examBlock>
+        <score1>3.0</score1>
+        <score2>5.0</score2>
+        <score3>3.0</score3>
+        <totalScore>11.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>tran thi kim</name>
+        <dateOfBirth>08/05/2024</dateOfBirth>
+        <sbd>12</sbd>
+        <gender>Nam</gender>
+        <province>Bình Định</province>
+        <examBlock>C00</examBlock>
+        <score1>5.0</score1>
+        <score2>6.0</score2>
+        <score3>7.0</score3>
+        <totalScore>18.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>bal bla</name>
+        <dateOfBirth>29/04/2024</dateOfBirth>
+        <sbd>5</sbd>
+        <gender>Nam</gender>
+        <province>Hà Giang</province>
+        <examBlock>D01</examBlock>
+        <score1>6.0</score1>
+        <score2>5.0</score2>
+        <score3>9.0</score3>
+        <totalScore>20.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>khang</name>
+        <dateOfBirth>04/05/2024</dateOfBirth>
+        <sbd>42</sbd>
+        <gender>Nữ</gender>
+        <province>Đồng Nai</province>
+        <examBlock>A00</examBlock>
+        <score1>9.0</score1>
+        <score2>8.0</score2>
+        <score3>7.0</score3>
+        <totalScore>24.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>abc</name>
+        <dateOfBirth>15/05/2024</dateOfBirth>
+        <sbd>123</sbd>
+        <gender>Nữ</gender>
+        <province>Bắc Ninh</province>
+        <examBlock>C00</examBlock>
+        <score1>4.0</score1>
+        <score2>3.0</score2>
+        <score3>5.0</score3>
+        <totalScore>12.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>bruh</name>
+        <dateOfBirth>29/04/2024</dateOfBirth>
+        <sbd>12</sbd>
+        <gender>Nam</gender>
+        <province>Bình Phước</province>
+        <examBlock>C00</examBlock>
+        <score1>3.0</score1>
+        <score2>4.0</score2>
+        <score3>5.0</score3>
+        <totalScore>12.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>a</name>
+        <dateOfBirth>29/04/2024</dateOfBirth>
+        <sbd>4</sbd>
+        <gender>Nữ</gender>
+        <province>Bình Phước</province>
+        <examBlock>D01</examBlock>
+        <score1>7.0</score1>
+        <score2>9.0</score2>
+        <score3>4.0</score3>
+        <totalScore>20.0</totalScore>
     </listCandidates>
     <listCandidates>
         <name>Nguyen Van B</name>
