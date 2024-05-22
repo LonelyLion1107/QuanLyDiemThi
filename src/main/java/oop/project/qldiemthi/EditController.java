@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 
 public class EditController implements Initializable {
@@ -142,22 +141,38 @@ public class EditController implements Initializable {
     }
 
     public void addData(MouseEvent e) {
-        String name = nameField.getText();
-        int sbd = Integer.parseInt(sbdField.getText());
-        String gender = genderChoice.getValue();
-        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
-        String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue().substring(0, 3);
-        float score1 = Float.parseFloat(score1Field.getText());
-        float score2 = Float.parseFloat(score2Field.getText());
-        float score3 = Float.parseFloat(score3Field.getText());
+        try {
+            String name = nameField.getText();
+            int sbd = Integer.parseInt(sbdField.getText());
+            String gender = genderChoice.getValue();
+            String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+            String province = provinceChoice.getValue();
+            String examBlock = examBlockChoice.getValue().substring(0, 3);
+            float score1 = Float.parseFloat(score1Field.getText());
+            float score2 = Float.parseFloat(score2Field.getText());
+            float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+            Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
-        candidateData.add(candidate);
-        candidateFunction.addCandidate(candidate);
-
-        clearInput();
+            if (checkInput()) {
+                candidateData.add(candidate);
+                candidateFunction.addCandidate(candidate);
+                clearInput();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Information");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please read the guide and check information fields carefully");
+                alert.showAndWait();
+            }
+        } catch (Exception exception) {
+            exception.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Information");
+            alert.setHeaderText("Something you have inputted is wrong");
+            alert.setContentText("Please read the guide and check information fields carefully");
+            alert.showAndWait();
+        }
     }
 
     public void getInfo(MouseEvent e) {
@@ -179,22 +194,40 @@ public class EditController implements Initializable {
     public void updateData(MouseEvent e) {
         int row = candidateTable.getSelectionModel().getSelectedIndex();
 
-        String name = nameField.getText();
-        int sbd = Integer.parseInt(sbdField.getText());
-        String gender = genderChoice.getValue();
-        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
-        String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue().substring(0, 3);
-        float score1 = Float.parseFloat(score1Field.getText());
-        float score2 = Float.parseFloat(score2Field.getText());
-        float score3 = Float.parseFloat(score3Field.getText());
+        try {
+            String name = nameField.getText();
+            int sbd = Integer.parseInt(sbdField.getText());
+            String gender = genderChoice.getValue();
+            String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+            String province = provinceChoice.getValue();
+            String examBlock = examBlockChoice.getValue().substring(0, 3);
+            float score1 = Float.parseFloat(score1Field.getText());
+            float score2 = Float.parseFloat(score2Field.getText());
+            float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+            Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+            if(checkInput()) {
+                candidateData.set(row, candidate);
+                candidateFunction.editCandidate(candidate, row);
+                clearInput();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Information");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please read the guide and check information fields carefully");
+                alert.showAndWait();
+            }
+        } catch(Exception exception) {
+            exception.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Information");
+            alert.setHeaderText("Something you have inputted is wrong");
+            alert.setContentText("Please read the guide and check information fields carefully");
+            alert.showAndWait();
+        }
 
-        candidateData.set(row, candidate);
-        candidateFunction.editCandidate(candidate, row);
 
-        clearInput();
+
     }
 
     public void deleteData(MouseEvent e) {
@@ -253,6 +286,52 @@ public class EditController implements Initializable {
         candidateData.clear();
         candidateData.addAll(candidateList);
         candidateTable.refresh();
+    }
+
+    public boolean checkInput() {
+        boolean check = true;
+        String name = nameField.getText();
+        int sbd = Integer.parseInt(sbdField.getText());
+        String gender = genderChoice.getValue();
+        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+        String province = provinceChoice.getValue();
+        String examBlock = examBlockChoice.getValue().substring(0, 3);
+        float score1 = Float.parseFloat(score1Field.getText());
+        float score2 = Float.parseFloat(score2Field.getText());
+        float score3 = Float.parseFloat(score3Field.getText());
+        if (name == "") {
+            check = false;
+        }
+
+        for (int i = 0; i < candidateList.size(); i++) {
+            if (candidateList.get(i).getSbd() == sbd) {
+                check = false;
+            }
+            break;
+        }
+
+        if (gender == null) {
+            check = false;
+        }
+
+
+        if (province == null) {
+            check = false;
+        }
+
+        if (score1 < 0 || score1 > 10) {
+            check = false;
+        }
+
+        if (score2 < 0 || score2 > 10) {
+            check = false;
+        }
+
+        if (score3 < 0 || score3 > 10) {
+            check = false;
+        }
+
+        return check;
     }
 
     public void guide(MouseEvent e) {
