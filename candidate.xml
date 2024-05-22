@@ -73,18 +73,6 @@
         <totalScore>24.0</totalScore>
     </listCandidates>
     <listCandidates>
-        <name>abc</name>
-        <dateOfBirth>15/05/2024</dateOfBirth>
-        <sbd>123</sbd>
-        <gender>Nữ</gender>
-        <province>Bắc Ninh</province>
-        <examBlock>C00</examBlock>
-        <score1>4.0</score1>
-        <score2>3.0</score2>
-        <score3>5.0</score3>
-        <totalScore>12.0</totalScore>
-    </listCandidates>
-    <listCandidates>
         <name>bruh</name>
         <dateOfBirth>29/04/2024</dateOfBirth>
         <sbd>12</sbd>
@@ -131,5 +119,17 @@
         <score2>6.0</score2>
         <score3>7.0</score3>
         <totalScore>20.0</totalScore>
+    </listCandidates>
+    <listCandidates>
+        <name>abc</name>
+        <dateOfBirth>15/05/2024</dateOfBirth>
+        <sbd>123</sbd>
+        <gender>Nữ</gender>
+        <province>Bình Phước</province>
+        <examBlock>C00</examBlock>
+        <score1>9.0</score1>
+        <score2>9.0</score2>
+        <score3>9.0</score3>
+        <totalScore>27.0</totalScore>
     </listCandidates>
 </candidates>
