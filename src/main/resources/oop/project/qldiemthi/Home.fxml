@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane fx:id="Home" prefHeight="650.0" prefWidth="870.0" style="-fx-border-color: rgb(0, 153, 255);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.HomeController">
     <children>
         <ImageView fitHeight="735.0" fitWidth="912.0" layoutX="-36.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
@@ -21,7 +17,7 @@
                 <ColorAdjust brightness="0.02" contrast="-0.02" hue="-0.09" saturation="-0.09" />
             </effect>
         </ImageView>
-        <Pane id="thongke" fx:id="statisticPane" layoutX="490.0" layoutY="218.0" onMouseClicked="#showStatistic" prefHeight="120.0" prefWidth="139.0" style="-fx-border-color: rgb(0, 153, 255); -fx-background-color: rgb(255,255,255);">
+        <Pane id="thongke" fx:id="statisticPane" layoutX="490.0" layoutY="218.0" onMouseClicked="#showStatistic" onMouseEntered="#statisticIn" onMouseExited="#statisticOut" prefHeight="120.0" prefWidth="139.0" style="-fx-border-color: rgb(0, 153, 255); -fx-background-color: rgb(255,255,255);">
             <children>
                 <Label fx:id="statisticLabel" layoutX="34.0" layoutY="89.0" onMouseClicked="#showStatistic" text="THỐNG KÊ" textFill="#2aacfc">
                     <font>
@@ -40,7 +36,7 @@
             <effect>
                 <ColorAdjust brightness="-0.17" contrast="0.56" hue="-0.09" saturation="0.02">
                     <input>
-                        <DropShadow height="44.39" radius="22.865000000000002" spread="0.12" width="49.07">
+                        <DropShadow height="35" radius="16" spread="0.15" width="32">
                             <color>
                                 <Color red="0.0235294122248888" green="0.8588235378265381" blue="0.8745098114013672" />
                             </color>
@@ -58,7 +54,7 @@
                 </ImageView>
             </children>
         </Pane>
-        <Pane id="chinhsua" fx:id="editPane" layoutX="211.0" layoutY="218.0" onMouseClicked="#showEdit" prefHeight="120.0" prefWidth="139.0" style="-fx-border-color: rgb(0, 153, 255); -fx-background-color: rgba(255,255,255,10);">
+        <Pane id="chinhsua" fx:id="editPane" layoutX="211.0" layoutY="218.0" onMouseClicked="#showEdit" onMouseEntered="#editIn" onMouseExited="#editOut" prefHeight="120.0" prefWidth="139.0" style="-fx-border-color: rgb(0, 153, 255); -fx-background-color: rgba(255,255,255,10);">
             <children>
                 <Label fx:id="editLabel" layoutX="30.0" layoutY="88.0" text="CHỈNH SỬA" textFill="#2aacfc">
                     <font>
@@ -80,16 +76,16 @@
             <effect>
                 <ColorAdjust brightness="0.21" contrast="1.0" hue="-0.09" saturation="-0.02">
                     <input>
-                        <DropShadow height="53.75" radius="24.035" spread="0.15" width="44.39">
+                        <DropShadow height="35" radius="16" spread="0.15" width="32">
                             <color>
-                                <Color red="0.017999999225139618" green="0.8999999761581421" blue="0.7509852647781372" />
+                                <Color red="0.0235294122248888" green="0.8588235378265381" blue="0.8745098114013672" />
                             </color>
                         </DropShadow>
                     </input>
                 </ColorAdjust>
             </effect>
         </Pane>
-        <Pane id="chinhsua" fx:id="logoutPane" layoutX="39.0" layoutY="530.0" onMouseClicked="#logout" prefHeight="50.0" prefWidth="150.0">
+        <Pane id="chinhsua" fx:id="logoutPane" layoutX="39.0" layoutY="530.0" onMouseClicked="#logout" onMouseEntered="#logOutIn" onMouseExited="#logOutOut" prefHeight="50.0" prefWidth="150.0">
             <children>
                 <ImageView fitHeight="35.0" fitWidth="38.0" layoutX="9.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -111,7 +107,7 @@
             <effect>
                 <ColorAdjust brightness="0.21" contrast="1.0" hue="-0.09" saturation="-0.02">
                     <input>
-                        <DropShadow height="53.75" radius="24.035" spread="0.15" width="44.39">
+                        <DropShadow height="50" radius="24" spread="0.15" width="40">
                             <color>
                                 <Color red="0.017999999225139618" green="0.8999999761581421" blue="0.7509852647781372" />
                             </color>

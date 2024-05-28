@@ -18,14 +18,26 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 
 public class EditController implements Initializable {
 
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button clearButton;
+    @FXML
+    private Button updateButton;
+    @FXML
+    private Button guideButton;
+    @FXML
+    private Button exitButton;
+    @FXML
+    private Button homeButton;
     //Home Pane
     @FXML
     private Pane homePane;
@@ -117,9 +129,81 @@ public class EditController implements Initializable {
 
     private ObservableList<Candidate> candidateData = FXCollections.observableArrayList(candidateList);
 
+    public void homeOut(MouseEvent e )
+    {
+        homeButton.setStyle(" -fx-text-fill: white; -fx-background-color:  rgb(51, 204, 255)");
+        homePane.setStyle("-fx-background-color: rgb(51, 204, 255)");
+    }
+    public void homeIn(MouseEvent e )
+    {
+        homeButton.setStyle(" -fx-text-fill: rgb(102, 217, 255); -fx-background-color: white");
+        homePane.setStyle("-fx-background-color: rgb(77, 210, 255)");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // change color add button
+        addButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            addButton.setStyle("-fx-background-color:  rgb(102, 224, 255); -fx-text-fill: white; -fx-border-color: white");
+        });
+
+        addButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            addButton.setStyle("-fx-background-color: rgb(51, 214, 255); -fx-text-fill: black; -fx-border-color: white; -fx-text-style: bold");
+        });
+        // change color delete button
+        deleteButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            deleteButton.setStyle("-fx-background-color:  rgb(255, 51, 133); -fx-text-fill: white; -fx-border-color: white");
+        });
+
+        deleteButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            deleteButton.setStyle("-fx-background-color:  rgb(255, 0, 102); -fx-text-fill: black; -fx-border-color: white; -fx-text-style: bold");
+        });
+        // change color clear button
+        clearButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            clearButton.setStyle("-fx-background-color:  rgb(26, 255, 26); -fx-text-fill: white; -fx-border-color: white");
+        });
+
+        clearButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            clearButton.setStyle("-fx-background-color:   rgb(0, 255, 0); -fx-text-fill: black; -fx-border-color: white; -fx-text-style: bold");
+        });
+        // change color update button
+        updateButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            updateButton.setStyle("-fx-background-color:  rgb(102, 255, 199); -fx-text-fill: white; -fx-border-color: white");
+        });
+
+        updateButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            updateButton.setStyle("-fx-background-color: rgb(77, 255, 190); -fx-text-fill: black; -fx-border-color: white; -fx-text-style: bold");
+        });
+        // change color guide button
+        guideButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            guideButton.setStyle("-fx-background-color: rgb(251, 199, 55); -fx-text-fill: white; -fx-border-color: white");
+        });
+
+        guideButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            guideButton.setStyle("-fx-background-color: rgb(250, 192, 30); -fx-text-fill: black; -fx-border-color: white; -fx-text-style: bold");
+        });
+        // change color exit search button
+        exitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            exitButton.setStyle("-fx-background-color: rgb(213, 144, 190); -fx-text-fill: white;");
+        });
+
+        exitButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            exitButton.setStyle("-fx-background-color: rgb(199, 107, 170); -fx-text-fill: #ffff80; -fx-text-style: bold italic");
+        });
+
+
         searchChoice.getItems().addAll(searchList);
         genderChoice.getItems().addAll(genderList);
         examBlockChoice.getItems().addAll(examBlockList);

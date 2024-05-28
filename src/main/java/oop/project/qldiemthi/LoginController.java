@@ -3,6 +3,7 @@ package oop.project.qldiemthi;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,12 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Border;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
     @FXML
     Button LoginButton;
     @FXML
@@ -53,17 +54,18 @@ public class LoginController {
 
     }
 
-    @FXML
-    public void LoginEntered(MouseEvent e) throws Exception {
-        LoginButton.setBackground(Background.fill(Color.WHITE));
-        LoginButton.setTextFill(Color. rgb(0, 153, 255));
-        LoginButton.setBorder(Border.stroke(Color.AQUAMARINE));
 
-    }
 
-    @FXML
-    public void LoginExited(MouseEvent e) throws Exception {
-        LoginButton.setBackground(Background.fill(Color. rgb(0, 153, 255)));
-        LoginButton.setTextFill(Color.WHITE);
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        LoginButton.addEventHandler(MouseEvent.MOUSE_ENTERED, event ->
+        {
+            LoginButton.setStyle("-fx-background-color: rgb(102, 194, 255); -fx-text-fill: rgb(0, 153, 255); -fx-border-color: white;");
+        });
+
+        LoginButton.addEventHandler(MouseEvent.MOUSE_EXITED, event ->
+        {
+            LoginButton.setStyle("-fx-background-color: rgb(0, 153, 255); -fx-text-fill: white; -fx-border-color: white");
+        });
     }
 }

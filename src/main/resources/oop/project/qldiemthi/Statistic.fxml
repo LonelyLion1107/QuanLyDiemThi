@@ -25,7 +25,7 @@
         <PieChart fx:id="pieChart" labelLineLength="30.0" layoutX="8.0" layoutY="68.0" legendSide="TOP" opacity="0.0" prefHeight="319.0" prefWidth="406.0" style="-fx-background-color: rgb(77, 255, 255); -fx-border-radius: 30%;" title="Khối được thí sinh đăng ký nhiều nhất" titleSide="BOTTOM" />
       <Pane fx:id="homePane" layoutX="14.0" layoutY="12.0" onMouseClicked="#returnHome" prefHeight="42.0" prefWidth="115.0" style="-fx-background-color: rgb(255,152,0);">
          <children>
-            <Button contentDisplay="CENTER" layoutX="28.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#returnHome" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: rgb(255,152,0);" text="HOME" textFill="#f4f2f2">
+            <Button fx:id="homeButton" contentDisplay="CENTER" layoutX="28.0" layoutY="4.0" mnemonicParsing="false" onMouseClicked="#returnHome" onMouseEntered="#homeIn" onMouseExited="#homeOut" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: rgb(255,152,0);" text="HOME" textFill="#f4f2f2">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ImageView fitHeight="35.0" fitWidth="37.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="35.0" fitWidth="37.0" layoutY="3.0" onMouseEntered="#homeIn" onMouseExited="#homeOut" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Home.png" />
                </image>
@@ -46,7 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Pane>
-      <Button layoutX="402.0" layoutY="19.0" mnemonicParsing="false" onAction="#load" prefHeight="34.0" prefWidth="96.0" style="-fx-background-color: rgb(255,152,0);" text="Thống kê" textFill="#fffefe">
+      <Button fx:id="thongkeButton" layoutX="402.0" layoutY="19.0" mnemonicParsing="false" onAction="#load" onMouseEntered="#changeColorIn" onMouseExited="#changeColorOut" prefHeight="34.0" prefWidth="96.0" style="-fx-background-color: rgb(255,152,0);" text="Thống kê" textFill="#fffefe">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.effect.Reflection?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane blendMode="MULTIPLY" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="883.0" style="-fx-background-color: rgb(0, 153, 255); -fx-border-color: rgb(255,255,255);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="oop.project.qldiemthi.LoginController">
     <children>
-        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="503.0" layoutY="403.0" mnemonicParsing="false" onAction="#Login" onMouseEntered="#LoginEntered" onMouseExited="#LoginExited" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(26, 163, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
+        <Button fx:id="LoginButton" contentDisplay="TEXT_ONLY" layoutX="537.0" layoutY="404.0" mnemonicParsing="false" onAction="#Login" prefHeight="34.0" prefWidth="214.0" style="-fx-background-color: rgb(26, 163, 255); -fx-border-color: rgb(255,255,255);" text="Login" textFill="WHITE">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -27,18 +19,18 @@
                 <Font name="System Bold" size="18.0" />
             </font>
             <effect>
-                <DropShadow height="91.18" radius="49.185" width="107.56">
+                <DropShadow height="25.73" radius="13.5225" width="30.36">
                     <color>
                         <Color red="0.8656530380249023" green="0.9363716840744019" blue="0.9578947424888611" />
                     </color>
                 </DropShadow>
             </effect>
         </Button>
-        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="503.0" layoutY="210.0" prefHeight="39.0" prefWidth="214.0" promptText="Username">
+        <TextField id="username" fx:id="usernameField" accessibleText="username" layoutX="537.0" layoutY="211.0" prefHeight="39.0" prefWidth="214.0" promptText="Username">
          <font>
             <Font size="18.0" />
          </font></TextField>
-        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="503.0" layoutY="293.0" prefHeight="34.0" prefWidth="214.0" promptText="Password">
+        <PasswordField id="password" fx:id="passwordField" accessibleText="password" layoutX="537.0" layoutY="294.0" prefHeight="34.0" prefWidth="214.0" promptText="Password">
          <font>
             <Font size="18.0" />
          </font></PasswordField>
@@ -67,17 +59,17 @@
                 <ButtonBar layoutX="95.0" layoutY="52.0" prefHeight="40.0" prefWidth="200.0" />
             </children>
         </Pane>
-        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="771.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@UserMale.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="737.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="34.0" fitWidth="58.0" layoutX="771.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@Hide.png" />
             </image>
         </ImageView>
-        <Label alignment="CENTER" layoutX="499.0" layoutY="82.0" text="WELCOME" textFill="WHITE">
+        <Label alignment="CENTER" layoutX="533.0" layoutY="83.0" text="WELCOME" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="45.0" />
             </font>
