@@ -73,7 +73,7 @@ public class StatisticController implements Initializable {
     }
     public void homeIn(MouseEvent e )
     {
-        homeButton.setStyle(" -fx-text-fill: rgb(153, 92, 0); -fx-background-color: rgb(255, 173, 51)");
+        homeButton.setStyle(" -fx-text-fill: rgb(153, 92, 0); -fx-background-color: white");
         homePane.setStyle("-fx-background-color: rgb(255, 173, 51)");
     }
     @Override
