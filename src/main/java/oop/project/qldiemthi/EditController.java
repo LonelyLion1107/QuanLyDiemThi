@@ -11,9 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -226,22 +230,39 @@ public class EditController implements Initializable {
     }
 
     public void addData(MouseEvent e) {
-        String name = nameField.getText();
-        int sbd = Integer.parseInt(sbdField.getText());
-        String gender = genderChoice.getValue();
-        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
-        String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue().substring(0, 3);
-        float score1 = Float.parseFloat(score1Field.getText());
-        float score2 = Float.parseFloat(score2Field.getText());
-        float score3 = Float.parseFloat(score3Field.getText());
+        try {
+            String name = nameField.getText();
+            int sbd = Integer.parseInt(sbdField.getText());
+            String gender = genderChoice.getValue();
+            String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+            String province = provinceChoice.getValue();
+            String examBlock = examBlockChoice.getValue().substring(0, 3);
+            float score1 = Float.parseFloat(score1Field.getText());
+            float score2 = Float.parseFloat(score2Field.getText());
+            float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+            Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
 
-        candidateData.add(candidate);
-        candidateFunction.addCandidate(candidate);
-
-        clearInput();
+            if (checkInput()) {
+                candidateFunction.addCandidate(candidate);
+                candidateData.add(candidate);
+                candidateTable.refresh();
+                clearInput();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Information");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please read the guide and check information fields carefully");
+                alert.showAndWait();
+            }
+        } catch (Exception exception) {
+            exception.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Information");
+            alert.setHeaderText("Something you have inputted is wrong");
+            alert.setContentText("Please read the guide and check information fields carefully");
+            alert.showAndWait();
+        }
     }
 
     public void getInfo(MouseEvent e) {
@@ -263,22 +284,38 @@ public class EditController implements Initializable {
     public void updateData(MouseEvent e) {
         int row = candidateTable.getSelectionModel().getSelectedIndex();
 
-        String name = nameField.getText();
-        int sbd = Integer.parseInt(sbdField.getText());
-        String gender = genderChoice.getValue();
-        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
-        String province = provinceChoice.getValue();
-        String examBlock = examBlockChoice.getValue().substring(0, 3);
-        float score1 = Float.parseFloat(score1Field.getText());
-        float score2 = Float.parseFloat(score2Field.getText());
-        float score3 = Float.parseFloat(score3Field.getText());
+        try {
+            String name = nameField.getText();
+            int sbd = Integer.parseInt(sbdField.getText());
+            String gender = genderChoice.getValue();
+            String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+            String province = provinceChoice.getValue();
+            String examBlock = examBlockChoice.getValue().substring(0, 3);
+            float score1 = Float.parseFloat(score1Field.getText());
+            float score2 = Float.parseFloat(score2Field.getText());
+            float score3 = Float.parseFloat(score3Field.getText());
 
-        Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
-
-        candidateData.set(row, candidate);
-        candidateFunction.editCandidate(candidate, row);
-
-        clearInput();
+            Candidate candidate = new Candidate(name, dateOfBirth, sbd, gender, province, examBlock, score1, score2, score3);
+            if (checkInput()) {
+                candidateData.set(row, candidate);
+                candidateFunction.editCandidate(candidate, row);
+                candidateTable.refresh();
+                clearInput();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Information");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please read the guide and check information fields carefully");
+                alert.showAndWait();
+            }
+        } catch (Exception exception) {
+            exception.getMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Information");
+            alert.setHeaderText("Something you have inputted is wrong");
+            alert.setContentText("Please read the guide and check information fields carefully");
+            alert.showAndWait();
+        }
     }
 
     public void deleteData(MouseEvent e) {
@@ -314,39 +351,143 @@ public class EditController implements Initializable {
         String searchType = searchChoice.getValue();
         List<Candidate> searchList = new ArrayList<Candidate>();
 
-        if (searchType.equals("Theo tên")) {
-            for (Candidate item : candidateList) {
-                String name = item.getName();
-                if (name.contains(searchContent)) {
-                    searchList.add(item);
+        if (searchType == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Search Error");
+            alert.setHeaderText("Search choice is null");
+            alert.setContentText("Please choose type of searching");
+            alert.showAndWait();
+            return;
+        } else if (searchType.equals("Theo tên")) {
+            if (searchContent.matches(".*[a-zA-Z].*")) {
+                for (Candidate item : candidateList) {
+                    String name = item.getName();
+                    if (name.contains(searchContent)) {
+                        searchList.add(item);
+                    }
                 }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Search Error");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please only input character");
+                alert.showAndWait();
+                return;
             }
         } else if (searchType.equals("Theo SBD")) {
-            for (Candidate item : candidateList) {
-                if (item.getSbd() == Integer.parseInt(searchContent)) {
-                    searchList.add(item);
+            try {
+                int sbd = Integer.parseInt(searchContent);
+                for (Candidate item : candidateList) {
+                    if (item.getSbd() == sbd) {
+                        searchList.add(item);
+                    }
                 }
+            } catch (Exception exception) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Search Error");
+                alert.setHeaderText("Something you have inputted is wrong");
+                alert.setContentText("Please only input number");
+                alert.showAndWait();
+                return;
             }
         }
 
-        candidateData.clear();
-        candidateData.addAll(searchList);
+        if(searchList.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Search result");
+            alert.setHeaderText("No candidate is found");
+            alert.setContentText("We can't find any candidate satisfy with your request");
+            alert.showAndWait();
+        } else {
+            candidateData.clear();
+            candidateData.addAll(searchList);
+        }
     }
 
     public void searchExit(MouseEvent e) {
+        searchChoice.setValue("Theo tên");
+        searchInput.setText(null);
         candidateData.clear();
         candidateData.addAll(candidateList);
         candidateTable.refresh();
     }
 
+    public boolean checkInput() {
+        boolean check = true;
+        String name = nameField.getText();
+        int sbd = Integer.parseInt(sbdField.getText());
+        String gender = genderChoice.getValue();
+        String dateOfBirth = datePicker.getValue().format(dateTimeFormatter);
+        String province = provinceChoice.getValue();
+        String examBlock = examBlockChoice.getValue().substring(0, 3);
+        float score1 = Float.parseFloat(score1Field.getText());
+        float score2 = Float.parseFloat(score2Field.getText());
+        float score3 = Float.parseFloat(score3Field.getText());
+        if (name == "") {
+            check = false;
+        }
+
+        for (int i = 0; i < candidateList.size(); i++) {
+            if (candidateList.get(i).getSbd() == sbd) {
+                check = false;
+            }
+            break;
+        }
+
+        if (gender == null) {
+            check = false;
+        }
+
+
+        if (province == null) {
+            check = false;
+        }
+
+        if (score1 < 0 || score1 > 10) {
+            check = false;
+        }
+
+        if (score2 < 0 || score2 > 10) {
+            check = false;
+        }
+
+        if (score3 < 0 || score3 > 10) {
+            check = false;
+        }
+
+        return check;
+    }
+
     public void guide(MouseEvent e) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Guide.fxml"));
-            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            Stage stage = new Stage();
+            BorderPane guidePane = FXMLLoader.load(getClass().getResource("Guide.fxml"));
+
+            Text text = new Text();
+            text.setFont(new Font("Arial", 14));
+            text.setWrappingWidth(500);
+            text.setLineSpacing(1.3);
+            text.setText(" Hướng dẫn thông tin thí sinh: \n " +
+                    "- Tên chỉ được bao gồm các ký tự và dấu\n " +
+                    "- SBD là các số và không chứa dữ liệu dạng khác\n " +
+                    "- Nhập điểm theo thứ tự các môn của khối mình chọn\n " +
+                    "VD: Nếu chọn khối A00 thì môn 1 sẽ là Toán, môn 2 là Lý, môn 3 là Hóa \n" +
+                    "- Thứ tự các môn của khối được mô tả trong ô khối thi khi ta ghi mới hoặc sửa đổi thông tin của thí sinh \n" +
+                    "- Điểm phải nằm trong khoảng từ 0 đến 10, nếu vô tình nhập ngoài khoảng này chương trình sẽ báo lỗi \n" + "\n" +
+                    "Hướng dẫn tìm kiếm: \n" +
+                    "- Trước tiên ta cần phải chọn đối tượng muốn tìm kiếm ở ô Select Type \n" +
+                    "- Sau đó nhập đúng thông tin ta muốn tìm kiếm vào ô tìm kiếm. \n" +
+                    "Lưu ý rằng khi tìm SBD thì ta phải nhập vào số, tìm tên thì ta cần nhập vào các ký tự \n" +
+                    "- Để thoát khỏi chế độ tìm kiếm, ta nhấn vào nút Exit Search");
+
+            guidePane.setCenter(text);
+
+            Scene scene = new Scene(guidePane);
+            stage.setScene(scene);
+            stage.setTitle("Guide");
             stage.show();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
