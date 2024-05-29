@@ -392,7 +392,7 @@ public class EditController implements Initializable {
             }
         }
 
-        if(searchList.size() == 0) {
+        if(searchList.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Search result");
             alert.setHeaderText("No candidate is found");
@@ -486,8 +486,8 @@ public class EditController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Guide");
             stage.show();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
