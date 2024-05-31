@@ -1,15 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<candidates>
-    <listCandidates>
-        <name>a</name>
-        <dateOfBirth>30/04/2024</dateOfBirth>
-        <sbd>3</sbd>
-        <gender>Nữ</gender>
-        <province>Bình Phước</province>
-        <examBlock>A01</examBlock>
-        <score1>3.0</score1>
-        <score2>2.0</score2>
-        <score3>1.0</score3>
-        <totalScore>6.0</totalScore>
-    </listCandidates>
-</candidates>
+<candidates/>

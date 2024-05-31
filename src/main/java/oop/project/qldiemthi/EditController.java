@@ -133,13 +133,12 @@ public class EditController implements Initializable {
 
     private ObservableList<Candidate> candidateData = FXCollections.observableArrayList(candidateList);
 
-    public void homeOut(MouseEvent e )
-    {
+    public void homeOut(MouseEvent e) {
         homeButton.setStyle(" -fx-text-fill: white; -fx-background-color:  rgb(51, 204, 255)");
         homePane.setStyle("-fx-background-color: rgb(51, 204, 255)");
     }
-    public void homeIn(MouseEvent e )
-    {
+
+    public void homeIn(MouseEvent e) {
         homeButton.setStyle(" -fx-text-fill: rgb(102, 217, 255); -fx-background-color: white");
         homePane.setStyle("-fx-background-color: rgb(77, 210, 255)");
     }
@@ -319,16 +318,29 @@ public class EditController implements Initializable {
     }
 
     public void deleteData(MouseEvent e) {
-        int row = candidateTable.getSelectionModel().getSelectedIndex();
-
-        if (row >= 0) {
-            candidateData.remove(row);
-            candidateFunction.deleteCandidate(row);
+        if (nameField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Empty Information");
+            alert.setHeaderText("There is nothing to delete");
+            alert.setContentText("Please choose one candidate and press delete after that");
+            alert.showAndWait();
+        } else {
+            int row = candidateTable.getSelectionModel().getSelectedIndex();
+            if (row >= 0) {
+                candidateData.remove(row);
+                candidateFunction.deleteCandidate(row);
+            }
+            clearInput();
         }
-        clearInput();
     }
 
     public void clearTableView(MouseEvent e) {
+        if(candidateData.size() == 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Empty Table");
+            alert.setHeaderText("There is nothing to clear");
+            alert.showAndWait();
+        }
         candidateTable.getItems().clear();
         candidateData.clear();
         candidateFunction.clearAll();
@@ -392,7 +404,7 @@ public class EditController implements Initializable {
             }
         }
 
-        if(searchList.isEmpty()) {
+        if (searchList.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Search result");
             alert.setHeaderText("No candidate is found");
